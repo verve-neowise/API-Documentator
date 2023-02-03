@@ -4,6 +4,7 @@ import express from 'express'
 import cors from 'cors'
 
 import api from './api'
+import { PORT } from '@shared/config'
 
 const app = express()
 
@@ -13,6 +14,6 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/v1/', api)
 
-app.listen(8080, () => {
-    console.log('server is running on http://localhost:8080/api');
+app.listen(PORT || 1234, () => {
+    console.log('server is running on http://localhost:' + PORT);
 })
