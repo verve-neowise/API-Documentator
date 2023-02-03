@@ -1,2 +1,2 @@
-export * from './context'
+export * from './DialogContext'
 export { default as ApiDialog } from './ApiDialog'
