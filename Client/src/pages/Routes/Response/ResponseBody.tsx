@@ -4,6 +4,7 @@ import { xcode } from "react-syntax-highlighter/dist/esm/styles/hljs"
 import Button from "../../../components/Button"
 import { Pencil, Trash } from "lucide-react"
 import { useResponseDialog } from "../../../dialogs/ResponseDialog"
+import { useResourcesContext } from "../../../context/ResourcesContext"
 
 type Props = {
     isActive: boolean
@@ -15,6 +16,7 @@ type Props = {
 export default ({ response, isActive, resourceId, routeId } : Props) => {
 
     const { deleteResponse, changeVisiblity } = useResponseDialog()
+    const { ownship } = useResourcesContext()
 
     const activeClass = isActive ? 'block' : 'hidden'
 
@@ -34,10 +36,14 @@ export default ({ response, isActive, resourceId, routeId } : Props) => {
             )
         }
         </div>
-        <div className="flex justify-end gap-3 mt-3">
-            <Button variant="neutral" onClick={ () => changeVisiblity(true, resourceId, routeId, response) } size="xs" icon={<Pencil size="14"/>}/>
-            <Button variant="red" onClick={ () => deleteResponse(resourceId, routeId, response) } size="xs" icon={<Trash  size="14"/>}/>
-        </div>
+        {
+            ownship && (
+                <div className="flex justify-end gap-3 mt-3">
+                    <Button variant="neutral" onClick={ () => changeVisiblity(true, resourceId, routeId, response) } size="xs" icon={<Pencil size="14"/>}/>
+                    <Button variant="red" onClick={ () => deleteResponse(resourceId, routeId, response) } size="xs" icon={<Trash  size="14"/>}/>
+                </div>
+            )
+        }
     </div>
    )
 }

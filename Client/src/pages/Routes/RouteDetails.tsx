@@ -5,6 +5,8 @@ import ResponseBody from "./Response/ResponseBody"
 import Button from "../../components/Button"
 import { Plus } from "lucide-react"
 import { useResponseDialog } from "../../dialogs/ResponseDialog"
+import { useRoutes } from "react-router-dom"
+import { useResourcesContext } from "../../context/ResourcesContext"
 
 type Props = {
     resource: string
@@ -17,6 +19,7 @@ export default ({ collapse, responses, resource, route }: Props) => {
 
     const [selected, setSelect] = useState<Response | undefined>(responses[0])
     const { changeVisiblity } = useResponseDialog()
+    const { ownship } = useResourcesContext()
 
     return ( 
          <>
@@ -31,12 +34,16 @@ export default ({ collapse, responses, resource, route }: Props) => {
                                 onClick={setSelect}/>
                         ))
                     }
-                    <Button 
-                        onClick={() => changeVisiblity(true, resource, route)} 
-                        size="xs" 
-                        variant="primary" 
-                        icon={ <Plus size="14"/> }
-                    />
+                    {
+                        ownship && (
+                            <Button 
+                                onClick={() => changeVisiblity(true, resource, route)} 
+                                size="xs" 
+                                variant="primary" 
+                                icon={ <Plus size="14"/> }
+                            />
+                        )
+                    }
                 </div>
                 <div className="mt-1 text-xs rounded">
                 {
