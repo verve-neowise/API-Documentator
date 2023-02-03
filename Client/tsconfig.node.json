@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@": ["./src"],
+      "@apis": ["./src/network"],
+      "@assets": ["./src/assets"],
+      "@components": ["./src/components"]
+    },
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}
